@@ -55,10 +55,10 @@ class Window:
                 if (cName != ""):
                     cName = arr[-1]
                     title = ' - '.join(arr[:-1])
-                    if (len(title) > 30):
-                        title = title[:30] + '...'
+                    if (len(title) > 27):
+                        title = title[:27] + '...'
                     else:
-                        title = title[:30]
+                        title = title[:27]
                 else:
                     title = ''
                 View.evaluate_js('setCurrentProcess',

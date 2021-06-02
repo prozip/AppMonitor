@@ -1,0 +1,1 @@
+pyinstaller --noconfirm --onefile --windowed --noupx --add-data "D:/code_files/Python_code/Project/AppMonitor/frontend;frontend/" --add-data "D:/code_files/Python_code/Project/AppMonitor/backend;backend/"  "D:/code_files/Python_code/Project/AppMonitor/start.py"

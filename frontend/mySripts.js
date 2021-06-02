@@ -4,6 +4,9 @@ var stoptime = false;
 var cName = "";
 var cTitle = "";
 var cAppName = "";
+var cTime = "";
+var cThread = "";
+var process = []
 
 function currentTime() {
     return new Date().toLocaleTimeString("en-US", {
@@ -71,39 +74,46 @@ function resetTimer() {
 
 function addToProcessList() {
     color = checkColor(cSec);
-    if (cName == "") {
-        cName = cAppName;
-    }
+    pName = cName
     if (cTitle !== "") {
-        cName = cName + " &nbsp;&ndash;&nbsp; ";
+        pName = cName + " &nbsp;&ndash;&nbsp; ";
     }
     if ((cName == "") & (cTitle == "")) {
-        cName = "staring...";
+        pName = "staring...";
     }
     html = `
-        <div class="item-timeline  timeline-${color}" style="cursor: pointer">
-            <div class="t-dot" data-original-title="" title="">
-            </div>
-            <div class="t-text">
-                <p>${cName}<a href="#"> ${cTitle}</a></p>
-                <span class="badge badge-${color}">${
+    <div class="item-timeline  timeline-${color}" style="cursor: pointer" onClick="showModal('${process.length}')">
+    <div class="t-dot" data-original-title="" title="">
+    </div>
+    <div class="t-text">
+    <p>${pName}<a href="#"> ${cTitle}</a></p>
+    <span class="badge badge-${color}">${
         "in " + approximateTime()
     }</span>
-                <p class="t-time">${currentTime()}</p>
-            </div>
-        </div>
+    <p class="t-time">${currentTime()}</p>
+    </div>
+    </div>
     `;
     document
         .getElementById("recentActivities")
         .insertAdjacentHTML("afterbegin", html);
+    cProcess = {
+        name: cName,
+        appName: cAppName,
+        title: cTitle,
+        thread: cThread,
+        sTime: cTime,
+        eTime: currentTime(),
+        sec: cSec
+    }
+    process.push(cProcess)
 }
 
 function setCurrentProcess(name, appName, thread, title) {
     if (name == '') {
-        document.getElementById("currentProcessName").innerText = 'Unknown Process'
-    } else {
-        document.getElementById("currentProcessName").innerText = name;
+        name = 'Unknown Process'
     }
+    document.getElementById("currentProcessName").innerText = name;
     document.getElementById("currentProcessExe").innerText = appName;
     document.getElementById("currentProcessThread").innerText = thread;
     document.getElementById("currentProcessTitle").innerText = title;
@@ -112,8 +122,10 @@ function setCurrentProcess(name, appName, thread, title) {
     resetTimer();
     // saveToDataBase()
     cName = name;
-    cTitle = title;
     cAppName = appName;
+    cTitle = title;
+    cThread = thread;
+    cTime = currentTime()
 }
 
 function setInfo(battery, disk, memory) {
@@ -125,4 +137,15 @@ function setInfo(battery, disk, memory) {
     document.getElementById('MemoryInfoWidth').setAttribute('style', 'width: ' + memory + '%')
 }
 
+function showModal(id) {
+
+    document.getElementById('modalName').innerText = process[id].name;
+    document.getElementById('modalTitle').innerText = 'title :  ' + process[id].title;
+    document.getElementById('modalExe').innerText = 'exe file :  ' + process[id].appName;
+    document.getElementById('modalThread').innerText = 'thread id :  ' + process[id].thread;
+    document.getElementById('modalStartTime').innerText = 'start time :  ' + process[id].sTime;
+    document.getElementById('modalSec').innerText = 'running time :  ' + process[id].sec;
+    document.getElementById('modalEndTime').innerText = 'end time :  ' + process[id].eTime;
+    document.getElementById('showModal').click()
+}
 timerCycle();

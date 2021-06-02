@@ -480,6 +480,35 @@
         </div>
         <!--  END CONTENT AREA  -->
 
+        <!-- BEGIN MODAL -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalName">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="modal-text" id="modalTitle"></p>
+                        <p class="modal-text" id="modalExe"></p>
+                        <p class="modal-text" id="modalThread"></p>
+                        <p class="modal-text" id="modalStartTime"></p>
+                        <p class="modal-text" id="modalSec"></p>
+                        <p class="modal-text" id="modalEndTime"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="showModal" type="button" class="btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal" style="visibility: hidden;">
+        </button>
+
+        <!-- END MODAL -->
+
     </div>
     <!-- END MAIN CONTAINER -->
 
