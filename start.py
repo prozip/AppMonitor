@@ -17,4 +17,4 @@ if __name__ == '__main__':
     api = Api()
     window = webview.create_window('App Monitor', './frontend/index.html', js_api=api,min_size=(1050,690))
     window.closing += on_closing
-    webview.start(backend, window, debug=True)
+    webview.start(backend, window)
