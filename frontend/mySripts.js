@@ -75,7 +75,7 @@ function addToProcessList() {
         cName = cAppName;
     }
     if (cTitle !== "") {
-        cName = cName + " - ";
+        cName = cName + " &nbsp;&ndash;&nbsp; ";
     }
     if ((cName == "") & (cTitle == "")) {
         cName = "staring...";
@@ -97,10 +97,11 @@ function addToProcessList() {
         .getElementById("recentActivities")
         .insertAdjacentHTML("afterbegin", html);
 }
+
 function setCurrentProcess(name, appName, thread, title) {
-    if (name==''){
+    if (name == '') {
         document.getElementById("currentProcessName").innerText = 'Unknown Process'
-    }else{
+    } else {
         document.getElementById("currentProcessName").innerText = name;
     }
     document.getElementById("currentProcessExe").innerText = appName;
@@ -115,13 +116,13 @@ function setCurrentProcess(name, appName, thread, title) {
     cAppName = appName;
 }
 
-function setInfo(battery, disk, memory){
+function setInfo(battery, disk, memory) {
     document.getElementById('BatteryInfo').innerText = battery + '%'
     document.getElementById('DiskInfo').innerText = disk + '%'
     document.getElementById('MemoryInfo').innerText = memory + '%'
-    document.getElementById('BatteryInfoWidth').setAttribute('style','width: '+battery + '%')
-    document.getElementById('DiskInfoWidth').setAttribute('style','width: '+disk + '%')
-    document.getElementById('MemoryInfoWidth').setAttribute('style','width: '+memory + '%')
+    document.getElementById('BatteryInfoWidth').setAttribute('style', 'width: ' + battery + '%')
+    document.getElementById('DiskInfoWidth').setAttribute('style', 'width: ' + disk + '%')
+    document.getElementById('MemoryInfoWidth').setAttribute('style', 'width: ' + memory + '%')
 }
 
 timerCycle();

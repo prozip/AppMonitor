@@ -35,13 +35,17 @@ var App = function() {
         scrollCat: function() {
             var sidebarWrapper = document.querySelectorAll('.sidebar-wrapper [aria-expanded="true"]')[0];
             var sidebarWrapperTop = sidebarWrapper.offsetTop - 12;
-            setTimeout(function(){ $('.menu-categories').animate({ scrollTop: sidebarWrapperTop }, 500); }, 500);
+            setTimeout(function() {
+                $('.menu-categories').animate({
+                    scrollTop: sidebarWrapperTop
+                }, 500);
+            }, 500);
         }
     }
 
     var toggleFunction = {
         sidebar: function($recentSubmenu) {
-            $('.sidebarCollapse').on('click', function (sidebar) {
+            $('.sidebarCollapse').on('click', function(sidebar) {
                 sidebar.preventDefault();
                 getSidebar = $('.sidebar-wrapper');
                 if ($recentSubmenu === true) {
@@ -98,11 +102,11 @@ var App = function() {
                 }
             })
         },
-        offToggleSidebarSubmenu: function () {
+        offToggleSidebarSubmenu: function() {
             $('.sidebar-wrapper').off('mouseenter mouseleave');
         },
         overlay: function() {
-            $('#dismiss, .overlay, cs-overlay').on('click', function () {
+            $('#dismiss, .overlay, cs-overlay').on('click', function() {
                 // hide sidebar
                 $(Selector.mainContainer).addClass('sidebar-closed');
                 $(Selector.mainContainer).removeClass('sbar-open');
@@ -113,16 +117,16 @@ var App = function() {
         },
         search: function() {
             $(Selector.searchFull).click(function(event) {
-               $(this).parents('.search-animated').find('.search-full').addClass(ToggleClasses.inputFocused);
-               $(this).parents('.search-animated').addClass('show-search');
-               $(Selector.overlay.search).addClass('show');
-               $(Selector.overlay.search).addClass('show');
+                $(this).parents('.search-animated').find('.search-full').addClass(ToggleClasses.inputFocused);
+                $(this).parents('.search-animated').addClass('show-search');
+                $(Selector.overlay.search).addClass('show');
+                $(Selector.overlay.search).addClass('show');
             });
 
             $(Selector.overlay.search).click(function(event) {
-               $(this).removeClass('show');
-               $(Selector.searchFull).parents('.search-animated').find('.search-full').removeClass(ToggleClasses.inputFocused);
-               $(Selector.searchFull).parents('.search-animated').removeClass('show-search');
+                $(this).removeClass('show');
+                $(Selector.searchFull).parents('.search-animated').find('.search-full').removeClass(ToggleClasses.inputFocused);
+                $(Selector.searchFull).parents('.search-animated').removeClass('show-search');
             });
         }
     }
@@ -130,10 +134,10 @@ var App = function() {
     var inBuiltfunctionality = {
         mainCatActivateScroll: function() {
             const ps = new PerfectScrollbar('.menu-categories', {
-                wheelSpeed:.5,
-                swipeEasing:!0,
-                minScrollbarLength:40,
-                maxScrollbarLength:300
+                wheelSpeed: .5,
+                swipeEasing: !0,
+                minScrollbarLength: 40,
+                maxScrollbarLength: 300
             });
         },
         preventScrollBody: function() {
@@ -142,8 +146,7 @@ var App = function() {
 
                 if (e.type == 'mousewheel') {
                     scrollTo = (e.originalEvent.wheelDelta * -1);
-                }
-                else if (e.type == 'DOMMouseScroll') {
+                } else if (e.type == 'DOMMouseScroll') {
                     scrollTo = 40 * e.originalEvent.detail;
                 }
 
@@ -158,50 +161,50 @@ var App = function() {
     var _mobileResolution = {
         onRefresh: function() {
             var windowWidth = window.innerWidth;
-            if ( windowWidth <= MediaSize.md ) {
+            if (windowWidth <= MediaSize.md) {
                 categoryScroll.scrollCat();
                 toggleFunction.sidebar();
             }
         },
-        
+
         onResize: function() {
             $(window).on('resize', function(event) {
                 event.preventDefault();
                 var windowWidth = window.innerWidth;
-                if ( windowWidth <= MediaSize.md ) {
+                if (windowWidth <= MediaSize.md) {
                     toggleFunction.offToggleSidebarSubmenu();
                 }
             });
         }
-        
+
     }
 
     var _desktopResolution = {
         onRefresh: function() {
             var windowWidth = window.innerWidth;
-            if ( windowWidth > MediaSize.md ) {
+            if (windowWidth > MediaSize.md) {
                 categoryScroll.scrollCat();
                 toggleFunction.sidebar(true);
                 toggleFunction.onToggleSidebarSubmenu();
             }
         },
-        
+
         onResize: function() {
             $(window).on('resize', function(event) {
                 event.preventDefault();
                 var windowWidth = window.innerWidth;
-                if ( windowWidth > MediaSize.md ) {
+                if (windowWidth > MediaSize.md) {
                     toggleFunction.onToggleSidebarSubmenu();
                 }
             });
         }
-        
+
     }
 
     function sidebarFunctionality() {
         function sidebarCloser() {
 
-            if (window.innerWidth <= 991 ) {
+            if (window.innerWidth <= 991) {
 
 
                 if (!$('body').hasClass('alt-menu')) {
@@ -215,7 +218,7 @@ var App = function() {
                     $('html, body').removeClass('sidebar-noneoverflow');
                 }
 
-            } else if (window.innerWidth > 991 ) {
+            } else if (window.innerWidth > 991) {
 
                 if (!$('body').hasClass('alt-menu')) {
 
@@ -237,14 +240,14 @@ var App = function() {
         }
 
         function sidebarMobCheck() {
-            if (window.innerWidth <= 991 ) {
+            if (window.innerWidth <= 991) {
 
-                if ( $('.main-container').hasClass('sbar-open') ) {
+                if ($('.main-container').hasClass('sbar-open')) {
                     return;
                 } else {
                     sidebarCloser()
                 }
-            } else if (window.innerWidth > 991 ) {
+            } else if (window.innerWidth > 991) {
                 sidebarCloser();
             }
         }
@@ -270,7 +273,7 @@ var App = function() {
             /*
                 Mobile Resoltion fn
             */
-            _mobileResolution.onRefresh();            
+            _mobileResolution.onRefresh();
             _mobileResolution.onResize();
 
             sidebarFunctionality();
